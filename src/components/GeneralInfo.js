@@ -15,10 +15,10 @@ class GeneralInfo extends Component {
     render() {
         return <div>
             <form className='general-form'>
-                <input type='text'></input>
-                <input type='email'></input>
-                <input type='tel'></input>
-                <textarea></textarea>
+                <input type='text' placeholder="name"></input>
+                <input type='email' placeholder="email"></input>
+                <input type='tel' placeholder="phone number"></input>
+                <textarea placeholder="summary"></textarea>
             </form>
         </div>
     }

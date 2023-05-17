@@ -13,11 +13,11 @@ class Education extends Component {
     render() {
         return <div>
             <form className='education-from'>
-                <input type='text'></input>
-                <input type='text'></input>
-                <input type='date'></input>
-                <input type='date'></input>
-                <textarea></textarea>
+                <input type='text' placeholder="course/program"></input>
+                <input type='text' placeholder="university"></input>
+                <input type='date' placeholder="start date"></input>
+                <input type='date' placeholder="end date"></input>
+                <textarea placeholder="description"></textarea>
             </form>
         </div>
     }
