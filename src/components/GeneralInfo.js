@@ -1,8 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
 import '../styles/App.css';
-import EditButton from './EditBtn'
-import SubmitButton from './SubmitBtn';
 
 class GeneralInfo extends Component {
     constructor() {
@@ -72,8 +70,8 @@ class GeneralInfo extends Component {
                     </div>
                 })}
                 <button onClick={this.handleEdit}>Edit</button>
-            </div> }
-            
+            </div> 
+            }
         </div>
     }
 }
