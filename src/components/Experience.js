@@ -58,9 +58,9 @@ class Experience extends Component {
             ? <div className='experience-edit'>
                 <form className='general-form'>
                 <input name='position' type='text' placeholder="position" defaultValue={this.state.position} onChange={this.onInputChange} required></input>
-                <input name='company' type='text' placeholder="email" value={this.state.company} onChange={this.onInputChange} required></input>
-                <input name='startDate' type='date' placeholder="start date" value={this.state.startDate} onChange={this.onInputChange} required></input>
-                <input name='endDate' type='date' placeholder="end date" value={this.state.endDate} onChange={this.onInputChange} required></input>
+                <input name='company' type='text' placeholder="email" defaultValue={this.state.company} onChange={this.onInputChange} required></input>
+                <input name='startDate' type='date' placeholder="start date" defaultValue={this.state.startDate} onChange={this.onInputChange} required></input>
+                <input name='endDate' type='date' placeholder="end date" defaultValue={this.state.endDate} onChange={this.onInputChange} required></input>
                 <textarea name='description' placeholder="description" onChange={this.onInputChange} defaultValue={this.state.summary || "professional dumbass"}></textarea>
                 <button type='submit' onClick={this.handleSubmit}>Submit Section</button>
                 </form>

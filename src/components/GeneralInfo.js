@@ -56,9 +56,9 @@ class GeneralInfo extends Component {
             {editStatus 
             ? <div className='general-edit'>
                 <form className='general-form'>
-                <input name='name' type='text' placeholder="name" value={this.state.name} onChange={this.onInputChange} required></input>
-                <input name='email' type='email' placeholder="email" value={this.state.email} onChange={this.onInputChange} required></input>
-                <input name='number' type='tel' placeholder="phone number" value={this.state.number} onChange={this.onInputChange} required></input>
+                <input name='name' type='text' placeholder="name" defaultValue={this.state.name} onChange={this.onInputChange} required></input>
+                <input name='email' type='email' placeholder="email" defaultValue={this.state.email} onChange={this.onInputChange} required></input>
+                <input name='number' type='tel' placeholder="phone number" defaultValue={this.state.number} onChange={this.onInputChange} required></input>
                 <textarea name='summary' placeholder="summary" onChange={this.onInputChange} defaultValue={this.state.summary || "I enjoy carrots"}></textarea>
                 <button type='submit' onClick={this.handleSubmit}>Submit Section</button>
                 </form>
