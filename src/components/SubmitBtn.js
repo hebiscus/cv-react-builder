@@ -8,12 +8,16 @@ class SubmitButton extends Component {
         this.state = {
     
         }
+        this.handleOnClick = this.handleOnClick.bind(this);
     }
 
+    handleOnClick() {
+
+    }
 
     
     render() {
-        return <button>Submit Section</button>
+        return <button onClick={() => this.handleOnClick()}>Submit Section</button>
     }
 }
 
