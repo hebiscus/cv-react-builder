@@ -29,9 +29,16 @@ class GeneralInfo extends Component {
 
     handleSubmit() {
         const inputsArray = [this.state.name, this.state.email, this.state.number, this.state.summary];
+        if (this.state.savedInputs.length === 0) {
+            this.setState({
+                submitStatus: "submitted",
+                savedInputs: this.state.savedInputs.concat(inputsArray)
+            });
+            return
+        } 
         this.setState({
             submitStatus: "submitted",
-            savedInputs: this.state.savedInputs.concat(inputsArray)
+            savedInputs: this.state.savedInputs.map((input, index) => inputsArray[index])
         });
     }
 
