@@ -27,8 +27,13 @@ class GeneralInfo extends Component {
         });
     }
 
-    handleSubmit() {
-        const inputsArray = [this.state.name, this.state.email, this.state.number, this.state.summary];
+    handleSubmit(e) {
+        if (this.state.name === "" || this.state.email === "" || this.state.number === "") {
+            return;
+        }
+        e.preventDefault();
+        const summary = this.state.summary === "" ? "I enjoy carrots" : this.state.summary;
+        const inputsArray = [this.state.name, this.state.email, this.state.number, summary];
         if (this.state.savedInputs.length === 0) {
             this.setState({
                 submitStatus: "submitted",
@@ -53,12 +58,12 @@ class GeneralInfo extends Component {
             {editStatus 
             ? <div className='general-edit'>
                 <form className='general-form'>
-                <input name='name' type='text' placeholder="name" onChange={this.onInputChange}></input>
-                <input name='email' type='email' placeholder="email" onChange={this.onInputChange}></input>
-                <input name='number' type='tel' placeholder="phone number" onChange={this.onInputChange}></input>
-                <textarea name='summary' placeholder="summary" onChange={this.onInputChange}></textarea>
+                <input name='name' type='text' placeholder="name" value={this.state.name} onChange={this.onInputChange} required></input>
+                <input name='email' type='email' placeholder="email" value={this.state.email} onChange={this.onInputChange} required></input>
+                <input name='number' type='tel' placeholder="phone number" value={this.state.number} onChange={this.onInputChange} required></input>
+                <textarea name='summary' placeholder="summary" onChange={this.onInputChange} defaultValue={this.state.summary || "I enjoy carrots"}></textarea>
+                <button type='submit' onClick={this.handleSubmit}>Submit Section</button>
                 </form>
-                <button onClick={this.handleSubmit}>Submit Section</button>
             </div>
             : <div className='general-submitted'>
                 {sectionInputs.map(input => {
