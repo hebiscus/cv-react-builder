@@ -1,81 +1,68 @@
-import React from 'react';
-import { Component } from 'react';
+import { useState } from 'react';
 import '../styles/App.css';
 
-class Experience extends Component {
-    constructor() {
-        super();
-        this.state = {
-            position: "",
-            company: "",
-            startDate: "",
-            endDate: "",
-            description: "",
-            submitStatus: "edit",
-            savedInputs: [],
-        };
-        this.onInputChange = this.onInputChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleEdit = this.handleEdit.bind(this);
+const Experience = () => {
+    const initialValues = {
+        position: "",
+        company: "",
+        startDate: "",
+        endDate: "",
+        description: "",
     }
 
-    onInputChange(event) {
-        const name = event.target.name;
-        this.setState({
-          [name]: event.target.value
+    const [inputValues, setInputValues] = useState(initialValues)
+    const [submitStatus, setSubmitStatus] = useState("edit");
+    const [savedInputs, setInputs] = useState([]);
+    const editStatus = submitStatus === "edit"
+
+    const updateInputs = (event) => {
+        const { name, value } = event.target;
+
+        setInputValues({
+            ...inputValues,
+            [name]: value,
         });
-    }
+    };
 
-    handleSubmit(e) {
-        if (this.state.position === "" || this.state.company === "") {
+    const handleSubmit = (e) => {
+        if (inputValues.position === "" || inputValues.company === "") {
             return;
         }
         e.preventDefault();
-        const description = this.state.description === "" ? "professional dumbass" : this.state.description;
-        const inputsArray = [this.state.position, this.state.company, this.state.startDate, this.state.endDate, description];
-        if (this.state.savedInputs.length === 0) {
-            this.setState({
-                submitStatus: "submitted",
-                savedInputs: this.state.savedInputs.concat(inputsArray)
-            });
-            return
-        } 
-        this.setState({
-            submitStatus: "submitted",
-            savedInputs: this.state.savedInputs.map((input, index) => inputsArray[index])
-        });
+        setInputs([
+            ...Object.values(inputValues)
+        ]);
+        setSubmitStatus("submit")
+    };
+
+    const handleEdit = () => {
+        setSubmitStatus("edit")
     }
 
-    handleEdit() {
-        this.setState({submitStatus: "edit"});
-    }
-    
-    render() {
-        const editStatus = this.state.submitStatus === "edit";
-        const sectionInputs = this.state.savedInputs;
-        return <div>
-            {editStatus 
-            ? <div className='experience-edit'>
+    return ( 
+        <div>
+        {editStatus 
+        ?   <div className='experience-edit'>
                 <form className='general-form'>
-                <input name='position' type='text' placeholder="position" defaultValue={this.state.position} onChange={this.onInputChange} required></input>
-                <input name='company' type='text' placeholder="email" defaultValue={this.state.company} onChange={this.onInputChange} required></input>
-                <input name='startDate' type='date' placeholder="start date" defaultValue={this.state.startDate} onChange={this.onInputChange} required></input>
-                <input name='endDate' type='date' placeholder="end date" defaultValue={this.state.endDate} onChange={this.onInputChange} required></input>
-                <textarea name='description' placeholder="description" onChange={this.onInputChange} defaultValue={this.state.summary || "professional dumbass"}></textarea>
-                <button type='submit' onClick={this.handleSubmit}>Submit Section</button>
+                <input name='position' type='text' placeholder="position" value={inputValues.position} onChange={updateInputs} required></input>
+                <input name='company' type='text' placeholder="email" value={inputValues.company} onChange={updateInputs} required></input>
+                <input name='startDate' type='date' placeholder="start date" value={inputValues.startDate} onChange={updateInputs}required></input>
+                <input name='endDate' type='date' placeholder="end date" value={inputValues.endDate} onChange={updateInputs} required></input>
+                <textarea name='description' placeholder="description" value={inputValues.description} onChange={updateInputs}></textarea>
+                <button type='submit' onClick={handleSubmit}>Submit Section</button>
                 </form>
             </div>
-            : <div className='experience-submitted'>
-                {sectionInputs.map(input => {
+        :   <div className='experience-submitted'>
+                {savedInputs.map(input => {
                     return <div>
                         {input}
                     </div>
                 })}
-                <button onClick={this.handleEdit}>Edit</button>
+                <button onClick={handleEdit}>Edit</button>
             </div> 
-            }
+        }
         </div>
-    }
+    )
 }
 
 export default Experience
