@@ -3,11 +3,11 @@ import '../styles/App.css';
 
 const Education = () =>  {
     const initialValues = {
-            program: "",
-            university: "",
-            startDate: "",
-            endDate: "",
-        };
+        program: "",
+        university: "",
+        startDate: "",
+        endDate: "",
+    };
 
     const [inputValues, setInputValues] = useState(initialValues)
     const [submitStatus, setSubmitStatus] = useState("edit");
